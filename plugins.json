@@ -1,0 +1,615 @@
+[
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://anichin.club&size=%size%",
+        "fileHash": "sha256-c748d9312a271546e0bf7c1f8c61c50f5ca513a2ed538edd469a009ee6a832d9",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 33269,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "Anime",
+            "AnimeMovie",
+            "Cartoon"
+        ],
+        "version": 2,
+        "internalName": "AnichinProvider",
+        "description": "Anichin \u2014 Streaming Donghua Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/AnichinProvider.cs3",
+        "name": "AnichinProvider"
+    },
+    {
+        "iconUrl": "https://aghanim.xyz/wp-content/themes/animesail/assets/images/ico.png",
+        "fileHash": "sha256-16f3f55c84be8028fb511d3e4e6ec2559aaf12107b8b44be723d76ce4ce568ee",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 34482,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AnimeMovie",
+            "Anime",
+            "OVA"
+        ],
+        "version": 6,
+        "internalName": "AnimeSailProvider",
+        "description": "AnimeSail \u2014 Streaming Anime, Donghua Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/AnimeSailProvider.cs3",
+        "name": "AnimeSailProvider"
+    },
+    {
+        "iconUrl": "https://animexin.dev/wp-content/uploads/2020/06/animexinv1.png",
+        "fileHash": "sha256-270c071f6a2d0fed56e819c6e7bc2176b9b26279abb014bd655bf6aa36a40516",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 14956,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AnimeMovie",
+            "Anime",
+            "Cartoon"
+        ],
+        "version": 1,
+        "internalName": "AnimexinProvider",
+        "description": "Animexin \u2014 Streaming Donghua Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/AnimexinProvider.cs3",
+        "name": "AnimexinProvider"
+    },
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://anoboy.be&size=%size%",
+        "fileHash": "sha256-cd202c97acc27c165f7a5597b8d100e9b9e583be77d3f14d1c3db1f6ac5a69d7",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 58497,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AnimeMovie",
+            "OVA",
+            "Anime"
+        ],
+        "version": 1,
+        "internalName": "AnoboyProvider",
+        "description": "AnoBoy \u2014 Streaming Anime Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/AnoboyProvider.cs3",
+        "name": "AnoboyProvider"
+    },
+    {
+        "iconUrl": "https://klikxxi.me/wp-content/uploads/2024/02/cropped-site-icon.png",
+        "fileHash": "sha256-5ec9e72ed4b9f2ec03146c52e1fe0625bcb63c5d3c5273121d3a0f9f9b505c03",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 234527,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AsianDrama",
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "Cinemax21Provider",
+        "description": "CineMax21 \u2014 Streaming Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/Cinemax21Provider.cs3",
+        "name": "Cinemax21Provider"
+    },
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://donghub.vip&size=%size%",
+        "fileHash": "sha256-16a49016269c2e20f83f9f83f79621ddb53a399748ec1e46a7156586f3d165fa",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 18883,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "Anime",
+            "AnimeMovie",
+            "Cartoon"
+        ],
+        "version": 1,
+        "internalName": "DonghubProvider",
+        "description": "Donghub \u2014 Streaming Donghua Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/DonghubProvider.cs3",
+        "name": "DonghubProvider"
+    },
+    {
+        "iconUrl": "https://klikxxi.me/wp-content/uploads/2024/02/cropped-site-icon.png",
+        "fileHash": "sha256-583cb27b0b798f26a00f60044f1c7d3fa9d417ef1321c2a8c7525b212b7ca47e",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 228952,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AsianDrama",
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "DrakorProvider",
+        "description": "Drakor \u2014 Streaming Drama Korean, Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/DrakorProvider.cs3",
+        "name": "DrakorProvider"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.dubbindo.site&sz=%size%",
+        "fileHash": "sha256-bf35c904f765449317968fc3de6edee7248d919b28b8c4f571c523a5c5fbfaeb",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 25674,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "Cartoon",
+            "Anime"
+        ],
+        "version": 1,
+        "internalName": "DubbindoProvider",
+        "description": "Dubbindo \u2014 Streaming Anime, Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/DubbindoProvider.cs3",
+        "name": "DubbindoProvider"
+    },
+    {
+        "iconUrl": "https://offshorebankservices.com/wp-content/uploads/2022/07/cropped-dutamovie21-512x512-1-60x60.png",
+        "fileHash": "sha256-7eed0a4655295e19ae4a4c73db118f3d5e468dd305ae2c0b1ef13b04c81bf65a",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 29393,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries",
+            "AsianDrama"
+        ],
+        "version": 1,
+        "internalName": "DutamovieProvider",
+        "description": "DutaMovie \u2014 Streaming Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/DutamovieProvider.cs3",
+        "name": "DutamovieProvider"
+    },
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://v2.hidoristream.online&size=%size%",
+        "fileHash": "sha256-ff3bc4f8fbe9855ce8b9392cf41befca8f6a78d4c3c0ede1813a4abb92e71512",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 48830,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AnimeMovie",
+            "OVA",
+            "Anime"
+        ],
+        "version": 3,
+        "internalName": "HidoriStreamProvider",
+        "description": "HidoriStream \u2014 Streaming Anime Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/HidoriStreamProvider.cs3",
+        "name": "HidoriStreamProvider"
+    },
+    {
+        "iconUrl": "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://idlixian.com&size=16",
+        "jarFileSize": 97796,
+        "fileHash": "sha256-dcabe437b558c75116c6ea2d703f1c8190a3e12eb3d4f52c3a0fc4671fc7f79e",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 26558,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "AsianDrama"
+        ],
+        "version": 2,
+        "internalName": "IdlixProvider",
+        "jarUrl": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/IdlixProvider.jar",
+        "description": "Idlix \u2014 Streaming Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/IdlixProvider.cs3",
+        "name": "IdlixProvider",
+        "jarHash": "sha256-3a252b62cc315f6f849c8b9d29b7d7ad0718a14c41396442d386fd7ed2b242b4"
+    },
+    {
+        "iconUrl": "https://homecookingrocks.com/wp-content/uploads/2024/10/cropped-indomax21-favicon-color-1.png",
+        "fileHash": "sha256-c6bf0c183001b1a3835aa86a9b9594509986956146ed4124f8ad8f34667c5802",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 26044,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "NSFW"
+        ],
+        "version": 3,
+        "internalName": "IndoMax21Provider",
+        "description": "IndoMax21 \u2014 Streaming Anime, Donghua, Hentai, Porn, Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/IndoMax21Provider.cs3",
+        "name": "IndoMax21Provider"
+    },
+    {
+        "iconUrl": "https://missav.ws/missav/logo-square.png",
+        "fileHash": "sha256-0cd3c88b6b5f68006bcabed6f7231c294344b977a483d48fd7dbd299ce351cfd",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 22004,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "NSFW"
+        ],
+        "version": 2,
+        "internalName": "JavHeyProvider",
+        "description": "JavHey \u2014 Streaming Porn and JAV",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/JavHeyProvider.cs3",
+        "name": "JavHeyProvider"
+    },
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://klikxxi.fit&size=%size%",
+        "fileHash": "sha256-5d620032a9588a52f090e435fb7f9f7d9a901bf1ae750a3e4548e88537e5ade3",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 21422,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "KlikxxiProvider",
+        "description": "KlikXXI \u2014 Streaming Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/KlikxxiProvider.cs3",
+        "name": "KlikxxiProvider"
+    },
+    {
+        "iconUrl": "https://play-lh.googleusercontent.com/EFMkS1T-8txjLFIl9QxjcTRLa7a7Muv08C04b7ongYgodoY_b2T3GpxzGAQEx-eitfQ=w256",
+        "fileHash": "sha256-523ba8abec4dbdaf192d0ec82712463e728d959d07822c632407f5c5f4f16632",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 37730,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AnimeMovie",
+            "Anime",
+            "OVA"
+        ],
+        "version": 3,
+        "internalName": "KuronimeProvider",
+        "description": "Kuronime \u2014 Streaming Anime Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/KuronimeProvider.cs3",
+        "name": "KuronimeProvider"
+    },
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://layarasia.site&size=%size%",
+        "fileHash": "sha256-8afcff5eafcfd14e7dff7fe7df5997cb3b5825e3bb4fe72454fe402d5c81a0b4",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 32343,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AsianDrama",
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "LayarAsiaProvider",
+        "description": "LayarAsia \u2014 Streaming Drama Korean, Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/LayarAsiaProvider.cs3",
+        "name": "LayarAsiaProvider"
+    },
+    {
+        "iconUrl": "https://assets.lk21.party/favicons/apple-icon-144x144.png",
+        "fileHash": "sha256-f95cc4ebb3da1615a3ac96d0a420fded243c9412fa54f74ae1c4186a174012ed",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 32759,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AsianDrama",
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "LayarKacaProvider",
+        "description": "LayarKaca \u2014 Streaming Movie Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/LayarKacaProvider.cs3",
+        "name": "LayarKacaProvider"
+    },
+    {
+        "iconUrl": "https://movieboxph.app/wp-content/uploads/2025/11/Movie-Box-icon.webp",
+        "fileHash": "sha256-0c0528f83d352a801acb687d32975b1b49c47fe646d097e86333811a9f40c4cb",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 30167,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "Anime",
+            "AsianDrama"
+        ],
+        "version": 1,
+        "internalName": "MovieboxProvider",
+        "description": "MovieBox \u2014 Streaming Movie Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/MovieboxProvider.cs3",
+        "name": "MovieboxProvider"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=nekopoi.care&sz=%size%",
+        "fileHash": "sha256-c526006a77a4c09944051f5e39d81b34ec3eea1fc39ab397f3340235f05af543",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 40285,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "NSFW"
+        ],
+        "version": 2,
+        "internalName": "NekopoiProvider",
+        "description": "NekoPoi \u2014 Streaming Hentai, Porn and JAV Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/NekopoiProvider.cs3",
+        "name": "NekopoiProvider"
+    },
+    {
+        "iconUrl": "https://new31.ngefilm.site/wp-content/uploads/2023/08/cropped-imageedit_8_4481000408-60x60.png",
+        "fileHash": "sha256-c4e3743f8ed285c27860137974adb217d7aeed59bc24cf99ed297459e1afa7ba",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 31593,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AsianDrama",
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "NgeFilm21Provider",
+        "description": "NgeFilm21 \u2014 Streaming Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/NgeFilm21Provider.cs3",
+        "name": "NgeFilm21Provider"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=nimegami.id&sz=%size%",
+        "fileHash": "sha256-1fb808c0afe20a9a67d22e54e90add8106cce8ec2be0e7a6966de3420cd0e7b2",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 23688,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Hexated"
+        ],
+        "tvTypes": [
+            "AnimeMovie",
+            "Anime",
+            "OVA"
+        ],
+        "version": 1,
+        "internalName": "NimegamiProvider",
+        "description": "Nimegami \u2014 Streaming Anime Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/NimegamiProvider.cs3",
+        "name": "NimegamiProvider"
+    },
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://nomat.site&size=%size%",
+        "fileHash": "sha256-7dc5865f3a935f756ecfec391f565c06b64e4049ebc74a3556ab4d805142c2c3",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 17422,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AsianDrama",
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "NomatProvider",
+        "description": "Nomat \u2014 Streaming Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/NomatProvider.cs3",
+        "name": "NomatProvider"
+    },
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://s11.nontonanimeid.boats&size=%size%",
+        "fileHash": "sha256-6a9bccb11267c73ccc668420d7e699e987b10f2a508ba1e3ecee8a5b3a4d89d7",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 41652,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AnimeMovie",
+            "Anime",
+            "OVA"
+        ],
+        "version": 3,
+        "internalName": "NontonAnimeIDProvider",
+        "description": "NontonAnimeID \u2014 Streaming Anime Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/NontonAnimeIDProvider.cs3",
+        "name": "NontonAnimeIDProvider"
+    },
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://45.11.57.243&size=%size%",
+        "fileHash": "sha256-d1f9cd21fee39b943134dffb33467ced0c01a7e6469c6ebc67cf2b723cb33c1b",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 25403,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AsianDrama",
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "OppaDramaProvider",
+        "description": "OppaDrama \u2014 Streaming Drama Korean, Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/OppaDramaProvider.cs3",
+        "name": "OppaDramaProvider"
+    },
+    {
+        "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr-sfek8gXmLpcAppEpaYbUDVtndQbCm_boh1-E91QrmSvsw-2l3-s2JOP&s=10",
+        "fileHash": "sha256-8bf2b0c310ad4ad746c4a8f49cc290a93fa0124c12ce05afd72d88782c2a0440",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 34516,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AnimeMovie",
+            "Anime",
+            "OVA"
+        ],
+        "version": 4,
+        "internalName": "OtakudesuProvider",
+        "description": "OtakuDesu \u2014 Streaming Anime Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/OtakudesuProvider.cs3",
+        "name": "OtakudesuProvider"
+    },
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ww03.pencurimovie.bond&size=%size%",
+        "fileHash": "sha256-d694f256ea898514121d64e8870686e9a3e263973f571bd2200593bb78fb9343",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 15417,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "PencuriMovieProvider",
+        "description": "PencuriMovie \u2014 Streaming Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/PencuriMovieProvider.cs3",
+        "name": "PencuriMovieProvider"
+    },
+    {
+        "iconUrl": "https://lh3.googleusercontent.com/zwKn_6sdYOdIiWg6Gtnx-Ar2DrVamlADnPN8BE4f84-a9aRo2Zc7mxbW5Qd26Z8cPFc",
+        "fileHash": "sha256-c3f5c6068d778926985a98c9bd9a7de2cbe735bcdfccd0e0fc5905d1f1003cff",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 29833,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "AnimeMovie",
+            "OVA",
+            "Anime"
+        ],
+        "version": 3,
+        "internalName": "SamehadakuProvider",
+        "description": "Samehadaku \u2014 Streaming Anime Subtitle Indonesia",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/SamehadakuProvider.cs3",
+        "name": "SamehadakuProvider"
+    },
+    {
+        "iconUrl": "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://winbu.net&size=%size%",
+        "fileHash": "sha256-2e0aa827db999f71ebbbea78756bea485150993a0ae8939531382fc59d740461",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 40466,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Miku"
+        ],
+        "tvTypes": [
+            "Movie",
+            "Anime",
+            "TvSeries"
+        ],
+        "version": 4,
+        "internalName": "WinbuProvider",
+        "description": "Winbu \u2014 Streaming Anime, Movie and TV Series",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/WinbuProvider.cs3",
+        "name": "WinbuProvider"
+    }
+]
