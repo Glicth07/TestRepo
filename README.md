@@ -2,7 +2,7 @@
 
 # 🩵 
 
-<img src="https://raw.githubusercontent.com/HatsuneMikuUwU/cloudstream-extensions-uwu/refs/heads/master/banner.png" alt="Hatsune Repo Banner" width="100%">
+<img src="[https://avatars.githubusercontent.com/u/85804009?v=4]" alt="Repo Banner" width="100%">
 
 </div>
 
