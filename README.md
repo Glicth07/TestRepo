@@ -2,7 +2,7 @@
 
 # 🩵 
 
-<img src="[https://avatars.githubusercontent.com/u/85804009?v=4](https://drive.google.com/file/d/105CZUDtl8fvghjUGe5RUZlFCN3vunQ8Q/view)" alt="Repo Banner" width="50%">
+<img src="https://drive.google.com/file/d/105CZUDtl8fvghjUGe5RUZlFCN3vunQ8Q/view" alt="Repo Banner" width="50%">
 
 </div>
 
