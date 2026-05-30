@@ -2,7 +2,7 @@
 
 # 🩵 
 
-<img src="https://drive.google.com/file/d/105CZUDtl8fvghjUGe5RUZlFCN3vunQ8Q/view?usp=sharing" alt="Repo Banner" width="50%">
+<img src="[https://drive.google.com/file/d/105CZUDtl8fvghjUGe5RUZlFCN3vunQ8Q/view?usp=sharing]" alt="Repo Banner" width="50%">
 
 </div>
 
