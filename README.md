@@ -49,6 +49,3 @@ This project is built upon the great work of the following open-source communiti
 
 ---
 
-​<div align="center">
-<b>Thank You for using Hatsune Repo! 🩵</b>
-</div>
