@@ -226,7 +226,7 @@
         "fileHash": "sha256-dcabe437b558c75116c6ea2d703f1c8190a3e12eb3d4f52c3a0fc4671fc7f79e",
         "apiVersion": 1,
         "repositoryUrl": "https://github.com/Glicth07/TestRepo",
-        "fileSize": 26558,
+        "fileSize": 28609,
         "status": 1,
         "language": "id",
         "authors": [
@@ -611,5 +611,30 @@
         "description": "Winbu \u2014 Streaming Anime, Movie and TV Series",
         "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/WinbuProvider.cs3",
         "name": "WinbuProvider"
+    },
+     {
+        "iconUrl": "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://idlixian.com&size=16",
+        "jarFileSize": 134837,
+        "fileHash": "sha256-82d36e79ad0045f2935107dbee73fe149b43cc0afb2edecb571765cc524dff52",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Glicth07/TestRepo",
+        "fileSize": 29992,
+        "status": 1,
+        "language": "id",
+        "authors": [
+            "Glicth07"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "AsianDrama"
+        ],
+        "version": 2,
+        "internalName": "RebahinProvider",
+        "jarUrl": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/RebahinProvider.jar",
+        "description": "Rebahin",
+        "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/RebahinProvider.cs3",
+        "name": "RebahinProvider",
+        "jarHash": "sha256-82368467dad4d6bd2ae0e766fe2355f0e1df9c83a7c98a0b86b95f2ee61fa4bf"
     }
 ]
