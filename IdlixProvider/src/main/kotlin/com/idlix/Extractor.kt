@@ -12,9 +12,9 @@ import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.getAndUnpack
 import com.lagradost.cloudstream3.utils.newExtractorLink
 
-class Jeniusplay : ExtractorApi() {
-    override var name = "Jeniusplay"
-    override var mainUrl = "https://jeniusplay.com"
+class Majorplay : ExtractorApi() {
+    override var name = "Majorplay"
+    override var mainUrl = "https://majorplay.net"
     override val requiresReferer = true
 
     override suspend fun getUrl(
