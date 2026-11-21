@@ -178,22 +178,25 @@ class IdlixProvider : MainAPI() {
         }
 
         val pageUrl = data
-        val regex = Regex("""e2e\.majorplay\.net/v/[^"'\s]+config[^"'\s]*\.json""")
+        val regex = Regex("""majorplay\.net/v/[^"'\s]+config[^"'\s]*\.json""")
         val script = """var __idlixClicked=false; var __idlixIv=setInterval(function(){ if(__idlixClicked){clearInterval(__idlixIv);return;} var b=Array.from(document.querySelectorAll('button')).find(function(x){return (x.outerHTML||'').indexOf('absolute inset-0')>=0;}); if(b){b.click();__idlixClicked=true;clearInterval(__idlixIv);} },1000);"""
         val resolver = WebViewResolver(
             regex,
+            userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             script = script,
             timeout = 45_000L
         )
 
         return try {
-            val (intercepted, _) = resolver.resolveUsingWebView(
+            val (intercepted, allRequests) = resolver.resolveUsingWebView(
                 pageUrl,
                 null,
-                script,
+                "GET",
                 { req -> req?.url?.toString()?.contains("majorplay") == true }
             )
-            val videoUrl = intercepted?.url?.toString().orEmpty()
+            val videoUrl = (allRequests.mapNotNull { it.url?.toString() }
+                .firstOrNull { it.contains("majorplay") && it.contains("config") }
+                ?: intercepted?.url?.toString()).orEmpty()
             Log.d("Idlix", "Intercepted URL: $videoUrl")
             if (videoUrl.isBlank() || !videoUrl.contains("majorplay")) return false
             callback.invoke(
