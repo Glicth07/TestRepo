@@ -171,48 +171,7 @@ class IdlixProvider : MainAPI() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ): Boolean {
-        val isSeries = data.contains("/series/")
-        val slug = data.trimEnd('/').substringAfterLast('/').let {
-            // for episode urls, slug is before /season
-            if (isSeries) data.substringAfter("/series/").substringBefore("/season") else it
-        }
-
-        val pageUrl = data
-        val regex = Regex("""majorplay\.net/v/[^"'\s]+config[^"'\s]*\.json""")
-        val script = """var __idlixClicked=false; var __idlixIv=setInterval(function(){ if(__idlixClicked){clearInterval(__idlixIv);return;} var b=Array.from(document.querySelectorAll('button')).find(function(x){return (x.outerHTML||'').indexOf('absolute inset-0')>=0;}); if(b){b.click();__idlixClicked=true;clearInterval(__idlixIv);} },1000);"""
-        val resolver = WebViewResolver(
-            regex,
-            userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            script = script,
-            timeout = 45_000L
-        )
-
-        return try {
-            val (intercepted, allRequests) = resolver.resolveUsingWebView(
-                pageUrl,
-                null,
-                "GET",
-                { req -> req?.url?.toString()?.contains("majorplay") == true }
-            )
-            val videoUrl = (allRequests.mapNotNull { it.url?.toString() }
-                .firstOrNull { it.contains("majorplay") && it.contains("config") }
-                ?: intercepted?.url?.toString()).orEmpty()
-            Log.d("Idlix", "Intercepted URL: $videoUrl")
-            if (videoUrl.isBlank() || !videoUrl.contains("majorplay")) return false
-            callback.invoke(
-                newExtractorLink(
-                    name,
-                    name,
-                    videoUrl,
-                    ExtractorLinkType.M3U8
-                ) {
-                    this.referer = pageUrl
-                }
-            )
-            true
-        } catch (_: Exception) {
-            false
-        }
+        return loadExtractor(data, data, subtitleCallback, callback)
     }
 
     // Data classes
