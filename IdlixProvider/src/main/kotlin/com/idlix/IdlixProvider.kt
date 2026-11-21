@@ -3,17 +3,15 @@ package com.idlix
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
-import com.lagradost.cloudstream3.LoadResponse.Companion.addActors
 import com.lagradost.cloudstream3.LoadResponse.Companion.addTrailer
-import com.lagradost.cloudstream3.extractors.helper.AesHelper
+import com.lagradost.cloudstream3.network.WebViewResolver
 import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
-import org.jsoup.nodes.Element
-import java.net.URI
+import java.net.URLEncoder
 
 class IdlixProvider : MainAPI() {
-    override var mainUrl = "https://z2.idlixku.com"
-    private var directUrl = mainUrl
+    override var mainUrl = "https://z3.idlixku.com"
+    private val apiBase = "$mainUrl/api"
     override var name = "Idlix"
     override val hasMainPage = true
     override var lang = "id"
@@ -25,160 +23,143 @@ class IdlixProvider : MainAPI() {
     )
 
     override val mainPage = mainPageOf(
-        "$mainUrl/" to "Featured",
-        "$mainUrl/trending/page/?get=movies" to "Trending Movies",
-        "$mainUrl/trending/page/?get=tv" to "Trending TV Series",
-        "$mainUrl/movie/page/" to "Movie",
-        "$mainUrl/tvseries/page/" to "TV Series",
-        "$mainUrl/network/amazon/page/" to "Amazon Prime",
-        "$mainUrl/network/apple-tv/page/" to "Apple TV+ Series",
-        "$mainUrl/network/disney/page/" to "Disney+ Series",
-        "$mainUrl/network/HBO/page/" to "HBO Series",
-        "$mainUrl/network/netflix/page/" to "Netflix Series",
+        "featured" to "Featured",
+        "trending_movies" to "Trending Movies",
+        "trending_series" to "Trending TV Series",
+        "movies" to "Movie",
+        "series" to "TV Series",
+        "network:prime-video" to "Amazon Prime",
+        "network:apple-tv-plus" to "Apple TV+ Series",
+        "network:disney-plus" to "Disney+ Series",
+        "network:hbo" to "HBO Series",
+        "network:netflix" to "Netflix Series",
     )
 
-    private fun getBaseUrl(url: String): String {
-        return URI(url).let { "${it.scheme}://${it.host}" }
+    private fun posterUrl(path: String?): String? {
+        if (path.isNullOrBlank()) return null
+        return "https://image.tmdb.org/t/p/w500$path"
+    }
+
+    private fun contentTypeToTvType(contentType: String?): TvType {
+        return if (contentType == "tv_series" || contentType == "series") TvType.TvSeries else TvType.Movie
+    }
+
+    private fun IdlixContent.toSearchResponse(): SearchResponse? {
+        val title = title ?: return null
+        val slug = slug ?: return null
+        val tvType = contentTypeToTvType(contentType)
+        val href = if (tvType == TvType.TvSeries) "$mainUrl/series/$slug" else "$mainUrl/movie/$slug"
+        return if (tvType == TvType.TvSeries) {
+            newTvSeriesSearchResponse(title, href, TvType.TvSeries) {
+                this.posterUrl = posterUrl(posterPath)
+            }
+        } else {
+            newMovieSearchResponse(title, href, TvType.Movie) {
+                this.posterUrl = posterUrl(posterPath)
+            }
+        }
     }
 
     override suspend fun getMainPage(
         page: Int,
         request: MainPageRequest
     ): HomePageResponse {
-        val url = request.data.split("?")
-        val nonPaged = request.name == "Featured" && page <= 1
-        val req = if (nonPaged) {
-            app.get(request.data)
-        } else {
-            app.get("${url.first()}$page/?${url.lastOrNull()}")
+        val url = when {
+            request.data == "featured" || request.data == "movies" ->
+                "$apiBase/movies?page=$page&limit=36&sort=createdAt"
+            request.data == "series" ->
+                "$apiBase/series?page=$page&limit=36&sort=createdAt"
+            request.data == "trending_movies" ->
+                "$apiBase/trending/top?limit=36&period=7d&contentType=movie"
+            request.data == "trending_series" ->
+                "$apiBase/trending/top?limit=36&period=7d&contentType=tv_series"
+            request.data.startsWith("network:") ->
+                "$apiBase/browse?page=$page&limit=36&sort=latest&network=${request.data.substringAfter(":")}"
+            else ->
+                "$apiBase/movies?page=$page&limit=36&sort=createdAt"
         }
-        mainUrl = getBaseUrl(req.url)
-        val document = req.documentLarge
-        
-        val home = (if (nonPaged) {
-            document.select("div.items.featured article")
-        } else {
-            document.select("div.items.full article, div#archive-content article")
-        }).mapNotNull { it.toSearchResult() }
-        
+
+        val home = when {
+            request.data.startsWith("trending") -> {
+                app.get(url).parsedSafe<IdlixTrendingResponse>()?.data?.mapNotNull { it.toSearchResponse() }
+            }
+            request.data.startsWith("network:") -> {
+                app.get(url).parsedSafe<IdlixBrowseResponse>()?.data?.mapNotNull { it.toSearchResponse() }
+            }
+            else -> {
+                app.get(url).parsedSafe<IdlixListResponse>()?.data?.mapNotNull { it.toSearchResponse() }
+            }
+        } ?: emptyList()
+
         return newHomePageResponse(request.name, home)
     }
 
-    private fun getProperLink(uri: String): String {
-        return if (uri.contains("/episode/") || uri.contains("/season/")) {
-            val keyword = if (uri.contains("/episode/")) "/episode/" else "/season/"
-            val title = uri.substringAfter("$mainUrl$keyword")
-            val extractedTitle = Regex("(.+?)-season").find(title)?.groupValues?.get(1) ?: title
-            "$mainUrl/tvseries/$extractedTitle"
-        } else {
-            uri
-        }
-    }
-
-    private fun Element.toSearchResult(): SearchResponse? {
-        val titleAnchor = this.selectFirst("h3 > a") ?: return null
-        val title = titleAnchor.text().replace(Regex("\\(\\d{4}\\)"), "").trim()
-        val href = getProperLink(titleAnchor.attr("href"))
-        val posterUrl = this.selectFirst("div.poster > img")?.attr("src")
-        val quality = getQualityFromString(this.selectFirst("span.quality")?.text())
-        
-        return newMovieSearchResponse(title, href, TvType.Movie) {
-            this.posterUrl = posterUrl
-            this.quality = quality
-        }
-    }
-
     override suspend fun search(query: String): List<SearchResponse> {
-        val req = app.get("$mainUrl/search/$query")
-        mainUrl = getBaseUrl(req.url)
-        val document = req.documentLarge
-        
-        return document.select("div.result-item").mapNotNull {
-            val titleAnchor = it.selectFirst("div.title > a") ?: return@mapNotNull null
-            val title = titleAnchor.text().replace(Regex("\\(\\d{4}\\)"), "").trim()
-            val href = getProperLink(titleAnchor.attr("href"))
-            val posterUrl = it.selectFirst("img")?.attr("src")
-            
-            newMovieSearchResponse(title, href, TvType.TvSeries) {
-                this.posterUrl = posterUrl
-            }
-        }
+        val encoded = URLEncoder.encode(query, "UTF-8").replace("+", "%20")
+        val url = "$apiBase/search?q=$encoded&page=1&limit=24&order=popular"
+        return app.get(url).parsedSafe<IdlixSearchResponse>()?.results?.mapNotNull { it.toSearchResponse() }
+            ?: emptyList()
     }
 
     override suspend fun load(url: String): LoadResponse {
-        val request = app.get(url)
-        directUrl = getBaseUrl(request.url)
-        val document = request.documentLarge
-        
-        val title = document.selectFirst("div.data > h1")?.text()
-            ?.replace(Regex("\\(\\d{4}\\)"), "")?.trim().orEmpty()
-            
-        val poster = document.select("div.g-item").shuffled().firstOrNull()?.selectFirst("a")?.attr("href")
-            ?: document.selectFirst("div.poster > img")?.attr("src")
-            
-        val tags = document.select("div.sgeneros > a").map { it.text() }
-        val year = Regex(",\\s?(\\d+)").find(document.selectFirst("span.date")?.text().orEmpty())
-            ?.groupValues?.get(1)?.toIntOrNull()
-            
-        val isTvSeries = document.selectFirst("ul#section > li:nth-child(1)")?.text()?.contains("Episodes") == true
-        val tvType = if (isTvSeries) TvType.TvSeries else TvType.Movie
-        
-        val description = document.selectFirst("p:nth-child(3)")?.text()?.trim()
-        val trailer = document.selectFirst("div.embed iframe")?.attr("src")
-        val rating = document.selectFirst("span.dt_rating_vgs")?.text()
-        
-        val actors = document.select("div.persons > div[itemprop=actor]").mapNotNull {
-            val name = it.selectFirst("meta[itemprop=name]")?.attr("content") ?: return@mapNotNull null
-            val image = it.selectFirst("img")?.attr("src")
-            Actor(name, image)
-        }
+        val slug = url.trimEnd('/').substringAfterLast('/')
+        val isSeries = url.contains("/series/")
 
-        val recommendations = document.select("div.owl-item").mapNotNull {
-            val anchor = it.selectFirst("a") ?: return@mapNotNull null
-            val recHref = anchor.attr("href")
-            val recName = recHref.removeSuffix("/").split("/").last()
-            val recPosterUrl = it.selectFirst("img")?.attr("src")
-            
-            newTvSeriesSearchResponse(recName, recHref, TvType.TvSeries) {
-                this.posterUrl = recPosterUrl
-            }
-        }
+        return if (isSeries) {
+            val content = app.get("$apiBase/series/$slug").parsedSafe<IdlixContent>()
+            val title = content?.title?.replace(Regex("\\(\\d{4}\\)"), "")?.trim().orEmpty()
 
-        return if (tvType == TvType.TvSeries) {
-            val episodes = document.select("ul.episodios > li").mapNotNull {
-                val href = it.selectFirst("a")?.attr("href") ?: return@mapNotNull null
-                val name = fixTitle(it.selectFirst("div.episodiotitle > a")?.text()?.trim().orEmpty())
-                val image = it.selectFirst("div.imagen > img")?.attr("src")
-                val numerandoText = it.selectFirst("div.numerando")?.text()?.replace(" ", "") ?: ""
-                val season = numerandoText.substringBefore("-").toIntOrNull()
-                val episode = numerandoText.substringAfter("-").toIntOrNull()
-                
-                newEpisode(href) {
-                    this.name = name
-                    this.season = season
-                    this.episode = episode
-                    this.posterUrl = image
+            val poster = posterUrl(content?.posterPath) ?: posterUrl(content?.backdropPath)
+            val tags = content?.genres?.mapNotNull { it.name } ?: emptyList()
+            val year = (content?.firstAirDate ?: "").take(4).toIntOrNull()
+            val description = content?.overview
+            val rating = content?.voteAverage
+            val trailer = content?.trailerUrl
+
+            val episodes = mutableListOf<Episode>()
+            content?.seasons?.forEach { season ->
+                val seasonNumber = season.seasonNumber ?: return@forEach
+                try {
+                    val epResponse = app.get("$apiBase/series/$slug/season/$seasonNumber/episode/1")
+                        .parsedSafe<IdlixEpisodeResponse>()
+                    epResponse?.episodes?.forEach { ep ->
+                        episodes.add(newEpisode("$mainUrl/series/$slug/season/$seasonNumber/episode/${ep.episodeNumber}") {
+                            this.name = ep.name
+                            this.season = seasonNumber
+                            this.episode = ep.episodeNumber
+                            this.posterUrl = posterUrl(ep.stillPath)
+                            this.description = ep.overview
+                        })
+                    }
+                } catch (_: Exception) {
                 }
             }
+
             newTvSeriesLoadResponse(title, url, TvType.TvSeries, episodes) {
                 this.posterUrl = poster
                 this.year = year
                 this.plot = description
                 this.tags = tags
-                this.score = Score.from100(rating)
-                addActors(actors)
-                this.recommendations = recommendations
+                this.score = rating?.let { Score.from10(it.toDoubleOrNull() ?: 0.0) }
                 addTrailer(trailer)
             }
         } else {
+            val content = app.get("$apiBase/movies/$slug").parsedSafe<IdlixContent>()
+            val title = content?.title?.replace(Regex("\\(\\d{4}\\)"), "")?.trim().orEmpty()
+
+            val poster = posterUrl(content?.posterPath) ?: posterUrl(content?.backdropPath)
+            val tags = content?.genres?.mapNotNull { it.name } ?: emptyList()
+            val year = (content?.releaseDate ?: "").take(4).toIntOrNull()
+            val description = content?.overview
+            val rating = content?.voteAverage
+            val trailer = content?.trailerUrl
+
             newMovieLoadResponse(title, url, TvType.Movie, url) {
                 this.posterUrl = poster
                 this.year = year
                 this.plot = description
                 this.tags = tags
-                this.score = Score.from100(rating)
-                addActors(actors)
-                this.recommendations = recommendations
+                this.score = rating?.let { Score.from10(it.toDoubleOrNull() ?: 0.0) }
                 addTrailer(trailer)
             }
         }
@@ -190,82 +171,105 @@ class IdlixProvider : MainAPI() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ): Boolean {
-        val document = app.get(data).documentLarge
-        val scriptRegex = """window\.idlixNonce=['"]([a-f0-9]+)['"].*?window\.idlixTime=(\d+).*?""".toRegex(RegexOption.DOT_MATCHES_ALL)
-        val script = document.selectFirst("script:containsData(window.idlix)")?.data().orEmpty()
-        val match = scriptRegex.find(script)
-        
-        val idlixNonce = match?.groups?.get(1)?.value ?: ""
-        val idlixTime = match?.groups?.get(2)?.value ?: ""
+        val isSeries = data.contains("/series/")
+        val slug = data.trimEnd('/').substringAfterLast('/').let {
+            // for episode urls, slug is before /season
+            if (isSeries) data.substringAfter("/series/").substringBefore("/season") else it
+        }
 
-        document.select("ul#playeroptionsul > li").map {
-            Triple(
-                it.attr("data-post"),
-                it.attr("data-nume"),
-                it.attr("data-type")
+        val pageUrl = data
+        val regex = Regex("""e2e\.majorplay\.net/v/[^"'\s]+config[^"'\s]*\.json""")
+        val resolver = WebViewResolver(
+            regex,
+            script = """setInterval(function(){var b=Array.from(document.querySelectorAll('button')).find(function(x){return (x.outerHTML||'').indexOf('absolute inset-0')>=0;}); if(b) b.click();},1000);""",
+            timeout = 45_000L
+        )
+
+        return try {
+            val res = app.get(pageUrl, interceptor = resolver)
+            val videoUrl = res.url
+            if (videoUrl.isBlank() || !videoUrl.contains("majorplay")) return false
+            callback.invoke(
+                newExtractorLink(
+                    name,
+                    name,
+                    videoUrl,
+                    ExtractorLinkType.M3U8
+                ) {
+                    this.referer = pageUrl
+                }
             )
-        }.amap { (id, nume, type) ->
-            val json = app.post(
-                url = "$directUrl/wp-admin/admin-ajax.php",
-                data = mapOf(
-                    "action" to "doo_player_ajax", "post" to id, "nume" to nume, "type" to type, "_n" to idlixNonce, "_p" to id, "_t" to idlixTime
-                ),
-                referer = data,
-                headers = mapOf("Accept" to "*/*", "X-Requested-With" to "XMLHttpRequest")
-            ).parsedSafe<ResponseHash>() ?: return@amap
-            
-            val metrix = AppUtils.parseJson<AesData>(json.embed_url).m
-            val password = createKey(json.key, metrix)
-            val decrypted = AesHelper.cryptoAESHandler(json.embed_url, password.toByteArray(), false)?.fixBloat() ?: return@amap
-            Log.d("AdiManu", decrypted.toJson())
-
-            if (!decrypted.contains("youtube")) {
-                loadExtractor(decrypted, directUrl, subtitleCallback, callback)
-            }
-        }
-        return true
-    }
-
-    private fun createKey(r: String, m: String): String {
-        val rList = r.split("\\x").filter { it.isNotEmpty() }
-        val paddingLength = (4 - m.length % 4) % 4
-        val paddedM = m.reversed().padEnd(m.length + paddingLength, '=')
-        
-        val decodedM = try {
-            String(base64DecodeArray(paddedM))
+            true
         } catch (_: Exception) {
-            return ""
+            false
         }
-        
-        return decodedM.split("|").mapNotNull { s ->
-            s.toIntOrNull()?.let { index ->
-                if (index in rList.indices) "\\x${rList[index]}" else null
-            }
-        }.joinToString("")
     }
 
-    private fun String.fixBloat(): String {
-        return this.replace("\"", "").replace("\\", "")
-    }
-
-    data class ResponseSource(
-        @JsonProperty("hls") val hls: Boolean,
-        @JsonProperty("videoSource") val videoSource: String,
-        @JsonProperty("securedLink") val securedLink: String?,
+    // Data classes
+    data class IdlixGenre(
+        @JsonProperty("name") val name: String?
     )
 
-    data class Tracks(
-        @JsonProperty("kind") val kind: String?,
-        @JsonProperty("file") val file: String,
-        @JsonProperty("label") val label: String?,
+    data class IdlixContent(
+        @JsonProperty("id") val id: String?,
+        @JsonProperty("title") val title: String?,
+        @JsonProperty("slug") val slug: String?,
+        @JsonProperty("posterPath") val posterPath: String?,
+        @JsonProperty("backdropPath") val backdropPath: String?,
+        @JsonProperty("overview") val overview: String?,
+        @JsonProperty("releaseDate") val releaseDate: String?,
+        @JsonProperty("firstAirDate") val firstAirDate: String?,
+        @JsonProperty("voteAverage") val voteAverage: String?,
+        @JsonProperty("quality") val quality: String?,
+        @JsonProperty("country") val country: String?,
+        @JsonProperty("contentType") val contentType: String?,
+        @JsonProperty("numberOfSeasons") val numberOfSeasons: Int?,
+        @JsonProperty("trailerUrl") val trailerUrl: String?,
+        @JsonProperty("genres") val genres: List<IdlixGenre>?,
+        @JsonProperty("seasons") val seasons: List<IdlixSeason>?
     )
 
-    data class ResponseHash(
-        @JsonProperty("embed_url") val embed_url: String,
-        @JsonProperty("key") val key: String,
+    data class IdlixSeason(
+        @JsonProperty("seasonNumber") val seasonNumber: Int?,
+        @JsonProperty("name") val name: String?,
+        @JsonProperty("episodeCount") val episodeCount: Int?,
+        @JsonProperty("overview") val overview: String?,
+        @JsonProperty("posterPath") val posterPath: String?
     )
 
-    data class AesData(
-        @JsonProperty("m") val m: String,
+    data class IdlixListResponse(
+        @JsonProperty("data") val data: List<IdlixContent>?,
+        @JsonProperty("pagination") val pagination: Any?
+    )
+
+    data class IdlixTrendingResponse(
+        @JsonProperty("data") val data: List<IdlixContent>?
+    )
+
+    data class IdlixBrowseResponse(
+        @JsonProperty("data") val data: List<IdlixContent>?
+    )
+
+    data class IdlixSearchResponse(
+        @JsonProperty("results") val results: List<IdlixContent>?,
+        @JsonProperty("total") val total: Int?
+    )
+
+    data class IdlixEpisode(
+        @JsonProperty("id") val id: String?,
+        @JsonProperty("episodeNumber") val episodeNumber: Int?,
+        @JsonProperty("name") val name: String?,
+        @JsonProperty("overview") val overview: String?,
+        @JsonProperty("stillPath") val stillPath: String?,
+        @JsonProperty("airDate") val airDate: String?,
+        @JsonProperty("runtime") val runtime: Int?,
+        @JsonProperty("voteAverage") val voteAverage: String?
+    )
+
+    data class IdlixEpisodeResponse(
+        @JsonProperty("series") val series: IdlixContent?,
+        @JsonProperty("season") val season: IdlixSeason?,
+        @JsonProperty("episode") val episode: IdlixEpisode?,
+        @JsonProperty("episodes") val episodes: List<IdlixEpisode>?
     )
 }
