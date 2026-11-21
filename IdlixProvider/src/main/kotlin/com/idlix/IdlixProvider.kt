@@ -179,15 +179,22 @@ class IdlixProvider : MainAPI() {
 
         val pageUrl = data
         val regex = Regex("""e2e\.majorplay\.net/v/[^"'\s]+config[^"'\s]*\.json""")
+        val script = """var __idlixClicked=false; var __idlixIv=setInterval(function(){ if(__idlixClicked){clearInterval(__idlixIv);return;} var b=Array.from(document.querySelectorAll('button')).find(function(x){return (x.outerHTML||'').indexOf('absolute inset-0')>=0;}); if(b){b.click();__idlixClicked=true;clearInterval(__idlixIv);} },1000);"""
         val resolver = WebViewResolver(
             regex,
-            script = """setInterval(function(){var b=Array.from(document.querySelectorAll('button')).find(function(x){return (x.outerHTML||'').indexOf('absolute inset-0')>=0;}); if(b) b.click();},1000);""",
+            script = script,
             timeout = 45_000L
         )
 
         return try {
-            val res = app.get(pageUrl, interceptor = resolver)
-            val videoUrl = res.url
+            val (intercepted, _) = resolver.resolveUsingWebView(
+                pageUrl,
+                null,
+                script,
+                { req -> req?.url?.toString()?.contains("majorplay") == true }
+            )
+            val videoUrl = intercepted?.url?.toString().orEmpty()
+            Log.d("Idlix", "Intercepted URL: $videoUrl")
             if (videoUrl.isBlank() || !videoUrl.contains("majorplay")) return false
             callback.invoke(
                 newExtractorLink(
