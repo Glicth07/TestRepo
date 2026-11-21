@@ -222,8 +222,8 @@
     },
     {
         "iconUrl": "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://idlixian.com&size=16",
-        "jarFileSize": 97796,
-        "fileHash": "sha256-dcabe437b558c75116c6ea2d703f1c8190a3e12eb3d4f52c3a0fc4671fc7f79e",
+        "jarFileSize": 110829,
+        "fileHash": "sha256-3c029dfd841e4c709fac270059f8f9c4234ee92715016930a891af860fdca021",
         "apiVersion": 1,
         "repositoryUrl": "https://github.com/Glicth07/TestRepo",
         "fileSize": 28609,
@@ -243,7 +243,7 @@
         "description": "Idlix \u2014 Streaming Movie and TV Series",
         "url": "https://raw.githubusercontent.com/Glicth07/TestRepo/builds/IdlixProvider.cs3",
         "name": "IdlixProvider",
-        "jarHash": "sha256-3a252b62cc315f6f849c8b9d29b7d7ad0718a14c41396442d386fd7ed2b242b4"
+        "jarHash": "sha256-9dfc07fb6614fbf3698ea8ec1ee4121ad42b07855e76d75d3d44c23cea810ed3"
     },
     {
         "iconUrl": "https://homecookingrocks.com/wp-content/uploads/2024/10/cropped-indomax21-favicon-color-1.png",
